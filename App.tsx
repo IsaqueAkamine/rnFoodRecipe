@@ -1,9 +1,9 @@
 import React from 'react';
-import Welcome from './src/screens/Welcome';
-import { createNavigationContainerRef } from '@react-navigation/native';
+
+import Routes from './src/routes';
 
 function App(): React.JSX.Element {
-  return <Welcome />;
+  return <Routes />;
 }
 
 export default App;
