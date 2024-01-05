@@ -1,6 +1,6 @@
 import React from 'react';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import Welcome from '../screens/Welcome';
+import { Home, Welcome } from '../screens';
 
 const Stack = createNativeStackNavigator();
 
@@ -13,6 +13,7 @@ export default function AppStack() {
       }}
     >
       <Stack.Screen name="Welcome" component={Welcome} />
+      <Stack.Screen name="Home" component={Home} />
     </Stack.Navigator>
   );
 }
