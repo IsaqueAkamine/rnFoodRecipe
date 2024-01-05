@@ -1,7 +1,8 @@
 import React, { useEffect } from 'react';
 import { StatusBar } from 'react-native';
-import { heightPercentageToDP as hp } from 'react-native-responsive-screen';
 import { useSharedValue, withSpring } from 'react-native-reanimated';
+
+import { SIZES } from '../../constants';
 
 import {
   Container,
@@ -21,10 +22,10 @@ const Welcome: React.FC = () => {
     ring2Padding.value = 0;
 
     setTimeout(() => {
-      ring1Padding.value = withSpring(ring1Padding.value + hp(4.5));
+      ring1Padding.value = withSpring(ring1Padding.value + SIZES.height(4.5));
     }, 100);
     setTimeout(() => {
-      ring2Padding.value = withSpring(ring2Padding.value + hp(5));
+      ring2Padding.value = withSpring(ring2Padding.value + SIZES.height(5));
     }, 300);
   }, []);
 
