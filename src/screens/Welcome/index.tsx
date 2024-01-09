@@ -1,7 +1,9 @@
 import React, { useEffect } from 'react';
 import { StatusBar } from 'react-native';
+import { useNavigation } from '@react-navigation/native';
 import { useSharedValue, withSpring } from 'react-native-reanimated';
 
+import { StackNavigation } from '../../routes/AppStack';
 import { SIZES } from '../../constants';
 
 import {
@@ -17,6 +19,8 @@ const Welcome: React.FC = () => {
   const ring1Padding = useSharedValue(0);
   const ring2Padding = useSharedValue(0);
 
+  const navigation = useNavigation<StackNavigation>();
+
   useEffect(() => {
     ring1Padding.value = 0;
     ring2Padding.value = 0;
@@ -27,6 +31,10 @@ const Welcome: React.FC = () => {
     setTimeout(() => {
       ring2Padding.value = withSpring(ring2Padding.value + SIZES.height(5));
     }, 300);
+
+    setTimeout(() => {
+      navigation.navigate('Home');
+    }, 2500);
   }, []);
 
   return (
