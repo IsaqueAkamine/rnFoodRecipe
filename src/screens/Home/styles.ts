@@ -7,14 +7,14 @@ export const Container = styled.View`
 `;
 
 export const StyledScrollView = styled.ScrollView`
-  padding: ${SIZES.height(5)}px ${SIZES.height(2)}px ${SIZES.height(2)}px
-    ${SIZES.height(2)}px;
+  padding: ${SIZES.height(5)}px 0 ${SIZES.height(2)}px 0;
 `;
 
 export const HeaderContainer = styled.View`
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
+  padding: 0 ${SIZES.height(2)}px;
 `;
 
 export const AvatarImage = styled.Image`
@@ -23,7 +23,8 @@ export const AvatarImage = styled.Image`
 `;
 
 export const GreetingsContainer = styled.View`
-  margin: ${SIZES.height(2)}px 0 ${SIZES.height(1)}px 0;
+  margin: ${SIZES.height(2)}px ${SIZES.height(2)}px ${SIZES.height(1)}px
+    ${SIZES.height(2)}px;
 `;
 
 export const GreetingsText = styled.Text`
@@ -31,7 +32,9 @@ export const GreetingsText = styled.Text`
   color: ${COLORS.textNeutral600};
 `;
 
-export const InfoContainer = styled.View``;
+export const InfoContainer = styled.View`
+  padding: 0 ${SIZES.height(2)}px;
+`;
 
 export const PunchlineText = styled.Text`
   font-weight: 600;
@@ -50,7 +53,7 @@ export const PunchlineText2 = styled.Text`
 `;
 
 export const SearchContainer = styled.View`
-  margin: ${SIZES.height(2.5)}px 0 0 0;
+  margin: ${SIZES.height(2.5)}px ${SIZES.height(2)}px;
   flex-direction: row;
   align-items: center;
   border-radius: ${SIZES.height(4)}px;
