@@ -1,5 +1,7 @@
 export default {
   backgroundAmber500: '#f59f0b',
+  bgAmber400: '#fbbf24',
+  
   textAmber400: '#fbbe24',
   textNeutral600: '#525252',
 

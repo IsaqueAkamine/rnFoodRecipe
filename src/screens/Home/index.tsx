@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { StatusBar } from 'react-native';
 import { BellIcon, MagnifyingGlassIcon } from 'react-native-heroicons/outline';
 
@@ -22,6 +22,8 @@ import {
 } from './styles';
 
 const Home: React.FC = () => {
+  const [activeCategory, setActiveCategory] = useState('Beef');
+
   return (
     <Container>
       <StatusBar barStyle={'dark-content'} />
@@ -64,7 +66,10 @@ const Home: React.FC = () => {
         </SearchContainer>
 
         {/* Categories */}
-        <Categories />
+        <Categories
+          activeCategory={activeCategory}
+          setActiveCategory={setActiveCategory}
+        />
       </StyledScrollView>
     </Container>
   );
