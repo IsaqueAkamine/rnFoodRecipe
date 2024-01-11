@@ -4,9 +4,7 @@ import { COLORS, SIZES } from '../../constants';
 
 export const Container = styled(Animated.View)``;
 
-export const CategoryList = styled.FlatList`
-  padding-left: ${SIZES.height(2)}px;
-`;
+export const CategoryList = styled.FlatList``;
 
 type ImageProps = {
   isActive: boolean;

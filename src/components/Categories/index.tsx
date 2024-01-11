@@ -11,57 +11,69 @@ import {
   Container,
 } from './styles';
 
-import { categoryData } from '../../constants/mocks';
 import { SIZES } from '../../constants';
 
+type CategoryProps = {
+  idCategory: string;
+  strCategory: string;
+  strCategoryThumb: string;
+  strCategoryDescription: string;
+};
+
 type CategoriesProps = {
+  categories: CategoryProps[];
   activeCategory: string;
   setActiveCategory: Dispatch<SetStateAction<string>>;
 };
 
 type CategoryCardProps = {
-  name: string;
-  image: string;
+  category: CategoryProps;
   activeCategory: string;
   setActiveCategory: Dispatch<SetStateAction<string>>;
 };
 
 const CategoryCard: React.FC<CategoryCardProps> = ({
-  name,
-  image,
+  category,
   activeCategory,
   setActiveCategory,
 }) => {
-  let isActive = name === activeCategory;
+  let isActive = category.strCategory === activeCategory;
   return (
-    <CategoryButton key={name} onPress={() => setActiveCategory(name)}>
+    <CategoryButton
+      key={category.idCategory}
+      onPress={() => setActiveCategory(category.strCategory)}
+    >
       <CategoryImageContainer isActive={isActive}>
-        <CategoryImage source={{ uri: image }} />
+        <CategoryImage source={{ uri: category.strCategoryThumb }} />
       </CategoryImageContainer>
-      <CategoryName>{name}</CategoryName>
+      <CategoryName>{category.strCategory}</CategoryName>
     </CategoryButton>
   );
 };
 
 const Categories: React.FC<CategoriesProps> = ({
+  categories,
   activeCategory,
   setActiveCategory,
 }) => {
   return (
     <Container entering={FadeInDown.duration(500).springify()}>
       <CategoryList
-        data={categoryData}
+        data={categories}
         keyExtractor={(_, index) => index.toString()}
         renderItem={({ item }) => (
           <CategoryCard
-            {...item}
+            category={item}
             setActiveCategory={setActiveCategory}
             activeCategory={activeCategory}
           />
         )}
         horizontal
         showsHorizontalScrollIndicator={false}
-        contentContainerStyle={{ gap: SIZES.height(2) }}
+        contentContainerStyle={{
+          gap: SIZES.height(2),
+          paddingHorizontal: SIZES.height(2),
+        }}
       />
     </Container>
   );

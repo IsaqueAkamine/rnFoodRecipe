@@ -1,6 +1,7 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { StatusBar } from 'react-native';
 import { BellIcon, MagnifyingGlassIcon } from 'react-native-heroicons/outline';
+import axios from 'axios';
 
 import Categories from '../../components/Categories';
 import { SIZES } from '../../constants';
@@ -23,6 +24,24 @@ import {
 
 const Home: React.FC = () => {
   const [activeCategory, setActiveCategory] = useState('Beef');
+  const [categories, setCategories] = useState([]);
+
+  const getCategories = async () => {
+    try {
+      const response = await axios.get(
+        'https://themealdb.com/api/json/v1/1/categories.php'
+      );
+      if (response && response.data) {
+        setCategories(response.data.categories);
+      }
+    } catch (error) {
+      console.log('Error', error.message);
+    }
+  };
+
+  useEffect(() => {
+    getCategories();
+  }, []);
 
   return (
     <Container>
@@ -66,10 +85,13 @@ const Home: React.FC = () => {
         </SearchContainer>
 
         {/* Categories */}
-        <Categories
-          activeCategory={activeCategory}
-          setActiveCategory={setActiveCategory}
-        />
+        {categories.length > 0 && (
+          <Categories
+            categories={categories}
+            activeCategory={activeCategory}
+            setActiveCategory={setActiveCategory}
+          />
+        )}
       </StyledScrollView>
     </Container>
   );
