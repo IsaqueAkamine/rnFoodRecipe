@@ -2,6 +2,7 @@ import React from 'react';
 import { StatusBar } from 'react-native';
 import { BellIcon, MagnifyingGlassIcon } from 'react-native-heroicons/outline';
 
+import Categories from '../../components/Categories';
 import { SIZES } from '../../constants';
 
 import {
@@ -63,6 +64,7 @@ const Home: React.FC = () => {
         </SearchContainer>
 
         {/* Categories */}
+        <Categories />
       </StyledScrollView>
     </Container>
   );
