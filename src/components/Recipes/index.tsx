@@ -1,10 +1,13 @@
 import React from 'react';
 import { View } from 'react-native';
+import { useNavigation } from '@react-navigation/native';
 import { FadeInDown } from 'react-native-reanimated';
 import MasonryList from '@react-native-seoul/masonry-list';
 
+import { StackNavigation } from '../../routes/AppStack';
 import { SIZES } from '../../constants';
 import { CategoryProps } from '../Categories';
+import Loading from '../Loading';
 
 import {
   Container,
@@ -14,9 +17,8 @@ import {
   RecipeName,
   Title,
 } from './styles';
-import Loading from '../Loading';
 
-type MealsProps = {
+export type MealsProps = {
   idMeal: string;
   strMeal: string;
   strMealThumb: string;
@@ -33,6 +35,7 @@ type RecipeProps = {
 };
 
 const RecipeCard: React.FC<RecipeCardProps> = ({ item, index }) => {
+  const navigation = useNavigation<StackNavigation>();
   const isThirdItem = index % 3 === 0;
 
   return (
@@ -43,7 +46,9 @@ const RecipeCard: React.FC<RecipeCardProps> = ({ item, index }) => {
         .springify()
         .damping(20)}
     >
-      <RecipeButtonImage>
+      <RecipeButtonImage
+        onPress={() => navigation.navigate('RecipeDetail', { item: item })}
+      >
         <RecipeImage
           source={{ uri: item.strMealThumb }}
           isThirdItem={isThirdItem}
