@@ -1,7 +1,8 @@
 import styled from 'styled-components/native';
 import { COLORS, SIZES } from '../../constants';
+import Animated from 'react-native-reanimated';
 
-export const Container = styled.View`
+export const Container = styled(Animated.View)`
   position: absolute;
   z-index: 10;
   width: 100%;

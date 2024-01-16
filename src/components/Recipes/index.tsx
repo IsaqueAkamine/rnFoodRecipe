@@ -52,6 +52,7 @@ const RecipeCard: React.FC<RecipeCardProps> = ({ item, index }) => {
         <RecipeImage
           source={{ uri: item.strMealThumb }}
           isThirdItem={isThirdItem}
+          sharedTransitionTag={item.strMeal}
         />
       </RecipeButtonImage>
       <RecipeName>

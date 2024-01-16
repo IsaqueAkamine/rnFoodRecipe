@@ -39,6 +39,7 @@ import {
   RoundedIconInside,
   RoundedIconOutside,
 } from './styles';
+import { FadeInDown } from 'react-native-reanimated';
 
 type RecipeDetailScreenRouteProp = RouteProp<
   RootStackParamList,
@@ -79,8 +80,6 @@ const RecipeDetailScreen: React.FC = () => {
         `https://themealdb.com/api/json/v1/1/lookup.php?i=${id}`
       );
 
-      console.log('id', id);
-
       if (response && response.data) {
         setMeal(response.data.meals[0]);
       }
@@ -116,7 +115,10 @@ const RecipeDetailScreen: React.FC = () => {
       <StatusBar barStyle={'light-content'} />
       {/* Recipe image */}
       <ImageContainer>
-        <RecipeImage source={{ uri: item.strMealThumb }} />
+        <RecipeImage
+          source={{ uri: item.strMealThumb }}
+          sharedTransitionTag={item.strMeal}
+        />
       </ImageContainer>
 
       {/* Meal description */}
@@ -128,12 +130,20 @@ const RecipeDetailScreen: React.FC = () => {
         />
       ) : (
         <RecipeContainer>
-          <InfoContainer>
+          {/* Name and area */}
+          <InfoContainer
+            entering={FadeInDown.duration(700).springify().damping(12)}
+          >
             <RecipeTitle>{meal.strMeal}</RecipeTitle>
             <RecipeDescription>{meal.strArea}</RecipeDescription>
           </InfoContainer>
 
-          <MiscContainer>
+          <MiscContainer
+            entering={FadeInDown.delay(100)
+              .duration(700)
+              .springify()
+              .damping(12)}
+          >
             {/* --Time-- */}
             <RoundedIconOutside>
               <RoundedIconInside>
@@ -198,7 +208,12 @@ const RecipeDetailScreen: React.FC = () => {
             </RoundedIconOutside>
           </MiscContainer>
           {/* Ingredients */}
-          <IngredientsContainer>
+          <IngredientsContainer
+            entering={FadeInDown.delay(200)
+              .duration(700)
+              .springify()
+              .damping(12)}
+          >
             <IngredientsTitle>Ingredients</IngredientsTitle>
             <IngredientsListContainer>
               {ingredientsIndexes(meal).map((i) => (
@@ -218,7 +233,12 @@ const RecipeDetailScreen: React.FC = () => {
           </IngredientsContainer>
 
           {/* Instructions */}
-          <InstructionsContainer>
+          <InstructionsContainer
+            entering={FadeInDown.delay(300)
+              .duration(700)
+              .springify()
+              .damping(12)}
+          >
             <InstructionsTitle>Instructions</InstructionsTitle>
             <InstructionsDescription>
               {meal?.strInstructions}
@@ -227,7 +247,12 @@ const RecipeDetailScreen: React.FC = () => {
 
           {/* Recipe Video */}
           {meal.strYoutube ? (
-            <RecipeVideoContainer>
+            <RecipeVideoContainer
+              entering={FadeInDown.delay(400)
+                .duration(700)
+                .springify()
+                .damping(12)}
+            >
               <RecipeText>Recipe Video</RecipeText>
               <View>
                 <YoutubeIframe

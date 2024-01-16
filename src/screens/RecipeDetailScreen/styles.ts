@@ -1,5 +1,6 @@
 import styled from 'styled-components/native';
 import { COLORS, SIZES } from '../../constants';
+import Animated from 'react-native-reanimated';
 
 export const Container = styled.ScrollView`
   background-color: ${COLORS.white};
@@ -13,7 +14,7 @@ export const ImageContainer = styled.View`
   flex-direction: row;
 `;
 
-export const RecipeImage = styled.Image`
+export const RecipeImage = styled(Animated.Image)`
   width: ${SIZES.width(98)}px;
   height: ${SIZES.height(50)}px;
   border-radius: ${SIZES.height(4.5)}px;
@@ -27,7 +28,7 @@ export const RecipeContainer = styled.View`
   justify-content: space-between;
 `;
 
-export const InfoContainer = styled.View`
+export const InfoContainer = styled(Animated.View)`
   gap: ${SIZES.height(1)}px;
   margin-bottom: ${SIZES.height(2)}px;
 `;
@@ -48,7 +49,8 @@ export const RecipeDescription = styled.Text`
 `;
 
 export const RecipeDescriptionContainer = styled.View``;
-export const MiscContainer = styled.View`
+
+export const MiscContainer = styled(Animated.View)`
   flex-direction: row;
   justify-content: space-around;
 `;
@@ -87,7 +89,7 @@ export const IconDescription = styled.Text`
   color: ${COLORS.textNeutral700};
 `;
 
-export const IngredientsContainer = styled.View`
+export const IngredientsContainer = styled(Animated.View)`
   padding-top: ${SIZES.height(2)}px;
 `;
 
@@ -136,7 +138,7 @@ export const IngredientDescription = styled.Text`
 
 // Instructions
 
-export const InstructionsContainer = styled.View`
+export const InstructionsContainer = styled(Animated.View)`
   padding-top: ${SIZES.height(2)}px;
 `;
 
@@ -153,7 +155,7 @@ export const InstructionsDescription = styled.Text`
 
 // Recipe Video
 
-export const RecipeVideoContainer = styled.View`
+export const RecipeVideoContainer = styled(Animated.View)`
   padding: ${SIZES.height(2)}px 0;
 `;
 

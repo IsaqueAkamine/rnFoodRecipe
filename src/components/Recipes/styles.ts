@@ -26,7 +26,7 @@ export const RecipeButtonImage = styled.Pressable`
   justify-content: center;
 `;
 
-export const RecipeImage = styled.Image<ImageProps>`
+export const RecipeImage = styled(Animated.Image)<ImageProps>`
   width: 100%;
   height: ${(props) =>
     props.isThirdItem ? SIZES.height(25) : SIZES.height(35)}px;
