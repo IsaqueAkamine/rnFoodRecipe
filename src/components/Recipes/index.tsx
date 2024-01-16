@@ -14,6 +14,7 @@ import {
   RecipeName,
   Title,
 } from './styles';
+import Loading from '../Loading';
 
 type MealsProps = {
   idMeal: string;
@@ -63,7 +64,9 @@ const Recipes: React.FC<RecipeProps> = ({ meals, categories }) => {
       <Title>Recipes</Title>
 
       <View>
-        {categories.length == 0 || meals.length == 0 ? null : (
+        {categories.length == 0 || meals.length == 0 ? (
+          <Loading size={'large'} style={{ marginTop: SIZES.height(10) }} />
+        ) : (
           <MasonryList
             data={meals}
             keyExtractor={(item): string => item.idMeal}
