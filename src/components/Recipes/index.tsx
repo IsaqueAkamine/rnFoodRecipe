@@ -3,8 +3,8 @@ import { View } from 'react-native';
 import { FadeInDown } from 'react-native-reanimated';
 import MasonryList from '@react-native-seoul/masonry-list';
 
-import { mealData } from '../../constants/mocks';
 import { SIZES } from '../../constants';
+import { CategoryProps } from '../Categories';
 
 import {
   Container,
@@ -14,19 +14,20 @@ import {
   RecipeName,
   Title,
 } from './styles';
-import { CategoryProps } from '../Categories';
 
-type ItemProps = {
-  name: string;
-  image: string;
+type MealsProps = {
+  idMeal: string;
+  strMeal: string;
+  strMealThumb: string;
 };
 
 type RecipeCardProps = {
-  item: ItemProps;
+  item: MealsProps;
   index: number;
 };
 
 type RecipeProps = {
+  meals: MealsProps[];
   categories: CategoryProps[];
 };
 
@@ -42,25 +43,30 @@ const RecipeCard: React.FC<RecipeCardProps> = ({ item, index }) => {
         .damping(20)}
     >
       <RecipeButtonImage>
-        <RecipeImage source={{ uri: item.image }} isThirdItem={isThirdItem} />
+        <RecipeImage
+          source={{ uri: item.strMealThumb }}
+          isThirdItem={isThirdItem}
+        />
       </RecipeButtonImage>
       <RecipeName>
-        {item.name.length > 20 ? item.name.slice(0, 20) + '...' : item.name}
+        {item.strMeal.length > 20
+          ? item.strMeal.slice(0, 20) + '...'
+          : item.strMeal}
       </RecipeName>
     </RecipeCardContainer>
   );
 };
 
-const Recipes: React.FC<RecipeProps> = ({ categories }) => {
+const Recipes: React.FC<RecipeProps> = ({ meals, categories }) => {
   return (
     <Container>
       <Title>Recipes</Title>
 
       <View>
-        {categories.length == 0 ? null : (
+        {categories.length == 0 || meals.length == 0 ? null : (
           <MasonryList
-            data={mealData}
-            keyExtractor={(item): string => item.id}
+            data={meals}
+            keyExtractor={(item): string => item.idMeal}
             numColumns={2}
             showsVerticalScrollIndicator={false}
             renderItem={({ item, i }) => <RecipeCard item={item} index={i} />}

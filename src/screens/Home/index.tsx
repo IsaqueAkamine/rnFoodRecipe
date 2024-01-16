@@ -26,6 +26,7 @@ import Recipes from '../../components/Recipes';
 const Home: React.FC = () => {
   const [activeCategory, setActiveCategory] = useState('Beef');
   const [categories, setCategories] = useState([]);
+  const [meals, setMeals] = useState([]);
 
   const getCategories = async () => {
     try {
@@ -40,8 +41,23 @@ const Home: React.FC = () => {
     }
   };
 
+  const getRecipes = async (category = 'Beef') => {
+    try {
+      const response = await axios.get(
+        `https://themealdb.com/api/json/v1/1/filter.php?c=${category}`
+      );
+      // console.log('get recipes', response.data);
+      if (response && response.data) {
+        setMeals(response.data.meals);
+      }
+    } catch (error) {
+      console.log('Error', error.message);
+    }
+  };
+
   useEffect(() => {
     getCategories();
+    getRecipes();
   }, []);
 
   return (
@@ -95,7 +111,7 @@ const Home: React.FC = () => {
         )}
 
         {/* Recipes */}
-        <Recipes categories={categories} />
+        <Recipes meals={meals} categories={categories} />
       </StyledScrollView>
     </Container>
   );
