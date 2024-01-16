@@ -13,7 +13,7 @@ import {
 
 import { SIZES } from '../../constants';
 
-type CategoryProps = {
+export type CategoryProps = {
   idCategory: string;
   strCategory: string;
   strCategoryThumb: string;

@@ -95,7 +95,7 @@ const Home: React.FC = () => {
         )}
 
         {/* Recipes */}
-        <Recipes />
+        <Recipes categories={categories} />
       </StyledScrollView>
     </Container>
   );

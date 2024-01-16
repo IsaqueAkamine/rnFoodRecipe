@@ -1,4 +1,5 @@
 import styled from 'styled-components/native';
+import Animated from 'react-native-reanimated';
 import { COLORS, SIZES } from '../../constants';
 
 type ImageProps = {
@@ -15,7 +16,7 @@ export const Title = styled.Text`
   color: ${COLORS.textNeutral600};
 `;
 
-export const RecipeCardContainer = styled.View`
+export const RecipeCardContainer = styled(Animated.View)`
   margin: ${SIZES.height(1)}px 0;
 `;
 
