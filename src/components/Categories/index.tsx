@@ -23,25 +23,27 @@ export type CategoryProps = {
 type CategoriesProps = {
   categories: CategoryProps[];
   activeCategory: string;
-  setActiveCategory: Dispatch<SetStateAction<string>>;
+  // setActiveCategory: Dispatch<SetStateAction<string>>;
+  handleChangeCategory: (category: string) => void;
 };
 
 type CategoryCardProps = {
   category: CategoryProps;
   activeCategory: string;
-  setActiveCategory: Dispatch<SetStateAction<string>>;
+  // setActiveCategory: Dispatch<SetStateAction<string>>;
+  handleChangeCategory: (category: string) => void;
 };
 
 const CategoryCard: React.FC<CategoryCardProps> = ({
   category,
   activeCategory,
-  setActiveCategory,
+  handleChangeCategory,
 }) => {
   let isActive = category.strCategory === activeCategory;
   return (
     <CategoryButton
       key={category.idCategory}
-      onPress={() => setActiveCategory(category.strCategory)}
+      onPress={() => handleChangeCategory(category.strCategory)}
     >
       <CategoryImageContainer isActive={isActive}>
         <CategoryImage source={{ uri: category.strCategoryThumb }} />
@@ -54,7 +56,7 @@ const CategoryCard: React.FC<CategoryCardProps> = ({
 const Categories: React.FC<CategoriesProps> = ({
   categories,
   activeCategory,
-  setActiveCategory,
+  handleChangeCategory,
 }) => {
   return (
     <Container entering={FadeInDown.duration(500).springify()}>
@@ -64,7 +66,7 @@ const Categories: React.FC<CategoriesProps> = ({
         renderItem={({ item }) => (
           <CategoryCard
             category={item}
-            setActiveCategory={setActiveCategory}
+            handleChangeCategory={handleChangeCategory}
             activeCategory={activeCategory}
           />
         )}

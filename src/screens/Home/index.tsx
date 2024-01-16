@@ -4,6 +4,7 @@ import { BellIcon, MagnifyingGlassIcon } from 'react-native-heroicons/outline';
 import axios from 'axios';
 
 import Categories from '../../components/Categories';
+import Recipes from '../../components/Recipes';
 import { SIZES } from '../../constants';
 
 import {
@@ -21,7 +22,6 @@ import {
   SearchInput,
   StyledScrollView,
 } from './styles';
-import Recipes from '../../components/Recipes';
 
 const Home: React.FC = () => {
   const [activeCategory, setActiveCategory] = useState('Beef');
@@ -43,16 +43,21 @@ const Home: React.FC = () => {
 
   const getRecipes = async (category = 'Beef') => {
     try {
+      setMeals([]);
       const response = await axios.get(
         `https://themealdb.com/api/json/v1/1/filter.php?c=${category}`
       );
-      // console.log('get recipes', response.data);
       if (response && response.data) {
         setMeals(response.data.meals);
       }
     } catch (error) {
       console.log('Error', error.message);
     }
+  };
+
+  const handleChangeCategory = (category: string) => {
+    getRecipes(category);
+    setActiveCategory(category);
   };
 
   useEffect(() => {
@@ -106,7 +111,7 @@ const Home: React.FC = () => {
           <Categories
             categories={categories}
             activeCategory={activeCategory}
-            setActiveCategory={setActiveCategory}
+            handleChangeCategory={handleChangeCategory}
           />
         )}
 
