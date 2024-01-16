@@ -21,6 +21,7 @@ import {
   SearchInput,
   StyledScrollView,
 } from './styles';
+import Recipes from '../../components/Recipes';
 
 const Home: React.FC = () => {
   const [activeCategory, setActiveCategory] = useState('Beef');
@@ -92,6 +93,9 @@ const Home: React.FC = () => {
             setActiveCategory={setActiveCategory}
           />
         )}
+
+        {/* Recipes */}
+        <Recipes />
       </StyledScrollView>
     </Container>
   );
